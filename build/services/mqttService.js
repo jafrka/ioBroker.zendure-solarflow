@@ -429,7 +429,7 @@ const setOutputLimit = async (adapter2, productKey, deviceKey, limit) => {
           } else if (limit < 60 && limit > 30) {
             limit = 30;
           } else if (limit < 30) {
-            limit = 30;
+            limit = 0;
           }
         }
         const topic = `iot/${productKey}/${deviceKey}/properties/write`;
