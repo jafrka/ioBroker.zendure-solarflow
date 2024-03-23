@@ -74,6 +74,7 @@ const login = (adapter) => {
       if (response.data.success) {
         adapter.log.info("[login] Login to Zendure Rest API successful!");
         if ((_b = (_a = response.data) == null ? void 0 : _a.data) == null ? void 0 : _b.accessToken) {
+           adapter.log.info("[ACCESS_TOKEN] "+response.data.data.accessToken);
           return response.data.data.accessToken;
         }
       }
