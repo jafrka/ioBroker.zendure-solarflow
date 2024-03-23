@@ -161,7 +161,16 @@ const onMessage = async (topic, message) => {
     const splitted = topic.split("/");
     const productKey = splitted[1];
     const deviceKey = splitted[2];
-    const obj = JSON.parse(message.toString());
+     let obj = {};
+    try{
+      obj = JSON.parse(message.toString());
+    } catch (e){
+      const txt = message.toString();
+      adapter.log.error(
+        `[JSON PARSE ERROR] ${txt}`
+      );
+    }
+    
     (0, import_adapterService.updateSolarFlowState)(
       adapter,
       productKey,
@@ -189,6 +198,12 @@ const onMessage = async (topic, message) => {
       const value = ((_j = obj.properties) == null ? void 0 : _j.passMode) == 0 ? "Automatic" : ((_k = obj.properties) == null ? void 0 : _k.passMode) == 1 ? "Always off" : ((_l = obj.properties) == null ? void 0 : _l.passMode) == 2 ? "Always on" : "Unknown";
       (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "passMode", value);
     }
+
+     if (((_h = obj.properties) == null ? void 0 : _h.pvBrand) != null && ((_i = obj.properties) == null ? void 0 : _i.pvBrand) != void 0) {
+      const value = ((_j = obj.properties) == null ? void 0 : _j.pvBrand) == 0 ? "Others" : ((_k = obj.properties) == null ? void 0 : _k.pvBrand) == 1 ? "Hoymiles" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 2 ? "Enphase" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 3 ? "APSystems" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 4 ? "Anker" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 5 ? "Deye" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 6 ? "Bosswerk" : "Unknown";
+      (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "passMode", value);
+    }
+    
     if (((_m = obj.properties) == null ? void 0 : _m.pass) != null && ((_n = obj.properties) == null ? void 0 : _n.pass) != void 0) {
       const value = ((_o = obj.properties) == null ? void 0 : _o.pass) == 0 ? false : true;
       (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "pass", value);
@@ -212,6 +227,16 @@ const onMessage = async (topic, message) => {
         obj.properties.outputHomePower
       );
     }
+    if (((_u = obj.properties) == null ? void 0 : _u.inverseMaxPower) != null && ((_v = obj.properties) == null ? void 0 : _v.inverseMaxPower) != void 0) {
+      (0, import_adapterService.updateSolarFlowState)(
+        adapter,
+        productKey,
+        deviceKey,
+        "inverseMaxPower",
+        obj.properties.inverseMaxPower
+      );
+    }
+
     if (((_u = obj.properties) == null ? void 0 : _u.outputLimit) != null && ((_v = obj.properties) == null ? void 0 : _v.outputLimit) != void 0) {
       (0, import_adapterService.updateSolarFlowState)(
         adapter,
@@ -221,6 +246,7 @@ const onMessage = async (topic, message) => {
         obj.properties.outputLimit
       );
     }
+    
     if (((_w = obj.properties) == null ? void 0 : _w.buzzerSwitch) != null && ((_x = obj.properties) == null ? void 0 : _x.buzzerSwitch) != void 0) {
       const value = ((_y = obj.properties) == null ? void 0 : _y.buzzerSwitch) == 0 ? false : true;
       (0, import_adapterService.updateSolarFlowState)(
