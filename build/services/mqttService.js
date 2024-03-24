@@ -194,6 +194,12 @@ const onMessage = async (topic, message) => {
       const value = ((_e = obj.properties) == null ? void 0 : _e.packState) == 0 ? "Idle" : ((_f = obj.properties) == null ? void 0 : _f.packState) == 1 ? "Charging" : ((_g = obj.properties) == null ? void 0 : _g.packState) == 2 ? "Discharging" : "Unknown";
       (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "packState", value);
     }
+
+      if (((_c = obj.properties) == null ? void 0 : _c.hubState) != null && ((_d = obj.properties) == null ? void 0 : _d.hubState) != void 0) {
+      const value = ((_e = obj.properties) == null ? void 0 : _e.hubState) == 0 ? "stop output standby" : ((_f = obj.properties) == null ? void 0 : _f.hubState) == 1 ? "stop output and shut down" : "Unknown";
+      (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "hubState", value);
+    }
+    
     if (((_h = obj.properties) == null ? void 0 : _h.passMode) != null && ((_i = obj.properties) == null ? void 0 : _i.passMode) != void 0) {
       const value = ((_j = obj.properties) == null ? void 0 : _j.passMode) == 0 ? "Automatic" : ((_k = obj.properties) == null ? void 0 : _k.passMode) == 1 ? "Always off" : ((_l = obj.properties) == null ? void 0 : _l.passMode) == 2 ? "Always on" : "Unknown";
       (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "passMode", value);
