@@ -141,6 +141,19 @@ const createSolarFlowStates = async (adapter, productKey, deviceKey) => {
     native: {}
   }));
 
+    await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.masterSwitch`, {
+    type: "state",
+    common: {
+      name: { de: "Master Switch", en: "Master Switch" },
+      type: "boolean",
+      desc: "masterSwitch",
+      role: "value",
+      read: true,
+      write: false
+    },
+    native: {}
+  }));
+
   await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.inverseMaxPower`, {
     type: "state",
  common: {
