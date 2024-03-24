@@ -115,6 +115,32 @@ const createSolarFlowStates = async (adapter, productKey, deviceKey) => {
     native: {}
   }));
 
+    await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.lowTemperature`, {
+    type: "state",
+    common: {
+      name: { de: "lowTemperature", en: "lowTemperature" },
+      type: "boolean",
+      desc: "lowTemperature",
+      role: "value",
+      read: true,
+      write: false
+    },
+    native: {}
+  }));
+
+      await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.heatState`, {
+    type: "state",
+    common: {
+      name: { de: "heatState", en: "heatState" },
+      type: "boolean",
+      desc: "heatState",
+      role: "value",
+      read: true,
+      write: false
+    },
+    native: {}
+  }));
+
   await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.inverseMaxPower`, {
     type: "state",
  common: {
@@ -140,6 +166,20 @@ const createSolarFlowStates = async (adapter, productKey, deviceKey) => {
     },
     native: {}
   }));
+
+  await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.autoHeat`, {
+    type: "state",
+    common: {
+      name: { de: "Test Beheizung", en: "test heating" },
+      type: "boolean",
+      desc: "autoHeat",
+      role: "value",
+      read: true,
+      write: false
+    },
+    native: {}
+  }));
+
 
   
   await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.pvBrand`, {
@@ -259,6 +299,38 @@ const createSolarFlowStates = async (adapter, productKey, deviceKey) => {
     },
     native: {}
   }));
+   await (adapter == null ? void 0 : adapter.extendObjectAsync(
+    `${productKey}.${deviceKey}.invOutputPower`,
+    {
+      type: "state",
+      common: {
+        name: { de: "invOutputPower", en: "invOutputPower" },
+        type: "number",
+        desc: "invOutputPower",
+        role: "value.power",
+        read: true,
+        write: false,
+        unit: "W"
+      },
+      native: {}
+    }
+  ));
+   await (adapter == null ? void 0 : adapter.extendObjectAsync(
+    `${productKey}.${deviceKey}.outputInversePower`,
+    {
+      type: "state",
+      common: {
+        name: { de: "outputInversePower", en: "outputInversePower" },
+        type: "number",
+        desc: "outputInversePower",
+        role: "value.power",
+        read: true,
+        write: false,
+        unit: "W"
+      },
+      native: {}
+    }
+  ));
   await (adapter == null ? void 0 : adapter.extendObjectAsync(
     `${productKey}.${deviceKey}.outputPackPower`,
     {
