@@ -228,6 +228,13 @@ class ZendureSolarflow extends utils.Adapter {
                 deviceKey,
                 state.val ? true : false
               );
+            } else if (stateName2 == "autoHeat") {
+              (0, import_mqttService.setAutoHeat)(
+                this,
+                productKey,
+                deviceKey,
+                state.val ? true : false
+              );
             } else if (stateName2 == "buzzerSwitch") {
               (0, import_mqttService.setBuzzerSwitch)(
                 this,
