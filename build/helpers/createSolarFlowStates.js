@@ -206,6 +206,19 @@ const createSolarFlowStates = async (adapter, productKey, deviceKey) => {
     },
     native: {}
   }));
+
+    await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.hubState`, {
+    type: "state",
+    common: {
+      name: { de: "Hub Status", en: "hub output state" },
+      type: "string",
+      desc: "hubState",
+      role: "value",
+      read: true,
+      write: false
+    },
+    native: {}
+  }));
   await (adapter == null ? void 0 : adapter.extendObjectAsync(`${productKey}.${deviceKey}.electricLevel`, {
     type: "state",
     common: {
