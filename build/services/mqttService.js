@@ -214,6 +214,12 @@ const onMessage = async (topic, message) => {
       const value = ((_o = obj.properties) == null ? void 0 : _o.pass) == 0 ? false : true;
       (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "pass", value);
     }
+
+    if (((_m = obj.properties) == null ? void 0 : _m.masterSwitch) != null && ((_n = obj.properties) == null ? void 0 : _n.masterSwitch) != void 0) {
+      const value = ((_o = obj.properties) == null ? void 0 : _o.masterSwitch) == 0 ? false : true;
+      (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "masterSwitch", value);
+    }
+    
         if (((_m = obj.properties) == null ? void 0 : _m.heatState) != null && ((_n = obj.properties) == null ? void 0 : _n.heatState) != void 0) {
       const value = ((_o = obj.properties) == null ? void 0 : _o.heatState) == 0 ? false : true;
       (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "heatState", value);
