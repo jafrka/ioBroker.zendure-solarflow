@@ -207,7 +207,7 @@ const onMessage = async (topic, message) => {
 
      if (((_h = obj.properties) == null ? void 0 : _h.pvBrand) != null && ((_i = obj.properties) == null ? void 0 : _i.pvBrand) != void 0) {
       const value = ((_j = obj.properties) == null ? void 0 : _j.pvBrand) == 0 ? "Others" : ((_k = obj.properties) == null ? void 0 : _k.pvBrand) == 1 ? "Hoymiles" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 2 ? "Enphase" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 3 ? "APSystems" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 4 ? "Anker" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 5 ? "Deye" : ((_l = obj.properties) == null ? void 0 : _l.pvBrand) == 6 ? "Bosswerk" : "Unknown";
-      (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "passMode", value);
+      (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "pvBrand", value);
     }
     
     if (((_m = obj.properties) == null ? void 0 : _m.pass) != null && ((_n = obj.properties) == null ? void 0 : _n.pass) != void 0) {
