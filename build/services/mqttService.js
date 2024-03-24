@@ -208,6 +208,14 @@ const onMessage = async (topic, message) => {
       const value = ((_o = obj.properties) == null ? void 0 : _o.pass) == 0 ? false : true;
       (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "pass", value);
     }
+        if (((_m = obj.properties) == null ? void 0 : _m.heatState) != null && ((_n = obj.properties) == null ? void 0 : _n.heatState) != void 0) {
+      const value = ((_o = obj.properties) == null ? void 0 : _o.heatState) == 0 ? false : true;
+      (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "heatState", value);
+    }
+            if (((_m = obj.properties) == null ? void 0 : _m.lowTemperature) != null && ((_n = obj.properties) == null ? void 0 : _n.lowTemperature) != void 0) {
+      const value = ((_o = obj.properties) == null ? void 0 : _o.lowTemperature) == 0 ? false : true;
+      (0, import_adapterService.updateSolarFlowState)(adapter, productKey, deviceKey, "lowTemperature", value);
+    }
     if (((_p = obj.properties) == null ? void 0 : _p.autoRecover) != null && ((_q = obj.properties) == null ? void 0 : _q.autoRecover) != void 0) {
       const value = ((_r = obj.properties) == null ? void 0 : _r.autoRecover) == 0 ? false : true;
       (0, import_adapterService.updateSolarFlowState)(
@@ -215,6 +223,16 @@ const onMessage = async (topic, message) => {
         productKey,
         deviceKey,
         "autoRecover",
+        value
+      );
+    }
+        if (((_p = obj.properties) == null ? void 0 : _p.autoHeat) != null && ((_q = obj.properties) == null ? void 0 : _q.autoHeat) != void 0) {
+      const value = ((_r = obj.properties) == null ? void 0 : _r.autoHeat) == 0 ? false : true;
+      (0, import_adapterService.updateSolarFlowState)(
+        adapter,
+        productKey,
+        deviceKey,
+        "autoHeat",
         value
       );
     }
@@ -234,6 +252,25 @@ const onMessage = async (topic, message) => {
         deviceKey,
         "inverseMaxPower",
         obj.properties.inverseMaxPower
+      );
+    }
+    if (((_u = obj.properties) == null ? void 0 : _u.outputInversePower) != null && ((_v = obj.properties) == null ? void 0 : _v.outputInversePower) != void 0) {
+      (0, import_adapterService.updateSolarFlowState)(
+        adapter,
+        productKey,
+        deviceKey,
+        "outputInversePower",
+        obj.properties.outputInversePower
+      );
+    }
+
+        if (((_u = obj.properties) == null ? void 0 : _u.invOutputPower) != null && ((_v = obj.properties) == null ? void 0 : _v.invOutputPower) != void 0) {
+      (0, import_adapterService.updateSolarFlowState)(
+        adapter,
+        productKey,
+        deviceKey,
+        "invOutputPower",
+        obj.properties.invOutputPower
       );
     }
 
@@ -481,9 +518,22 @@ const setAutoRecover = async (adapter2, productKey, deviceKey, autoRecover) => {
       properties: { autoRecover: autoRecover ? 1 : 0 }
     };
     adapter2.log.debug(
-      `[setPassMode] Set autoRecover for device ${deviceKey} to ${autoRecover}!`
+      `[setAutoRecover] Set autoRecover for device ${deviceKey} to ${autoRecover}!`
     );
     (_a = adapter2.mqttClient) == null ? void 0 : _a.publish(topic, JSON.stringify(setAutoRecoverContent));
+  }
+};
+const setAutoHeat = async (adapter2, productKey, deviceKey, autoHeat) => {
+  var _a;
+  if (adapter2.mqttClient && productKey && deviceKey) {
+    const topic = `iot/${productKey}/${deviceKey}/properties/write`;
+    const setAutoHeatContent = {
+      properties: { autoHeat: autoHeat ? 1 : 0 }
+    };
+    adapter2.log.debug(
+      `[setAutoHeat] Set autoRecover for device ${deviceKey} to ${autoHeat}!`
+    );
+    (_a = adapter2.mqttClient) == null ? void 0 : _a.publish(topic, JSON.stringify(setAutoHeatContent));
   }
 };
 const onConnected = () => {
@@ -556,6 +606,7 @@ const connectMqttClient = (_adapter) => {
   setDischargeLimit,
   setOutputLimit,
   setPassMode,
-  triggerFullTelemetryUpdate
+  triggerFullTelemetryUpdate,
+  setAutoHeat,
 });
 //# sourceMappingURL=mqttService.js.map
