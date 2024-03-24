@@ -153,6 +153,24 @@ const createControlStates = async (adapter, productKey, deviceKey) => {
       native: {}
     }
   ));
+    await (adapter == null ? void 0 : adapter.extendObjectAsync(
+    `${productKey}.${deviceKey}.control.autoHeat`,
+    {
+      type: "state",
+      common: {
+        name: {
+          de: "autoHeat",
+          en: "autoHeat"
+        },
+        type: "boolean",
+        desc: "autoHeat",
+        role: "switch",
+        read: true,
+        write: true
+      },
+      native: {}
+    }
+  ));
   if (adapter.config.useLowVoltageBlock) {
     await (adapter == null ? void 0 : adapter.extendObjectAsync(
       `${productKey}.${deviceKey}.control.lowVoltageBlock`,
