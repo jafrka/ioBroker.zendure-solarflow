@@ -34,6 +34,7 @@ __export(mqttService_exports, {
   setAcSwitch: () => setAcSwitch,
   setAutoRecover: () => setAutoRecover,
   setBuzzerSwitch: () => setBuzzerSwitch,
+   setHubState: () => setHubState,
   setChargeLimit: () => setChargeLimit,
   setDcSwitch: () => setDcSwitch,
   setDischargeLimit: () => setDischargeLimit,
@@ -613,6 +614,13 @@ const onMessage = async (topic, message) => {
         "hubState",
         obj.properties.hubState == 0 ? "Stop output and standby" : "Stop output and shut down"
       );
+            (0, import_adapterService.updateSolarFlowControlState)(
+        adapter,
+        productKey,
+        deviceKey,
+        "hubState",
+        value
+      );
     }
     if (obj.packData) {
       addOrUpdatePackData(productKey, deviceKey, obj.packData, isSolarFlow);
@@ -747,6 +755,17 @@ const setBuzzerSwitch = async (adapter2, productKey, deviceKey, buzzerOn) => {
     const socSetLimit = { properties: { buzzerSwitch: buzzerOn ? 1 : 0 } };
     adapter2.log.debug(
       `[setBuzzer] Setting Buzzer for device key ${deviceKey} to ${buzzerOn}!`
+    );
+    (_a = adapter2.mqttClient) == null ? void 0 : _a.publish(topic, JSON.stringify(socSetLimit));
+  }
+};
+const setHubState = async (adapter2, productKey, deviceKey, hubState) => {
+  var _a;
+  if (adapter2.mqttClient && productKey && deviceKey) {
+    const topic = `iot/${productKey}/${deviceKey}/properties/write`;
+    const socSetLimit = { properties: { hubState: hubState ? 1 : 0 } };
+    adapter2.log.debug(
+      `[setBuzzer] Setting Hub State for device key ${deviceKey} to ${hubState}!`
     );
     (_a = adapter2.mqttClient) == null ? void 0 : _a.publish(topic, JSON.stringify(socSetLimit));
   }
@@ -958,6 +977,7 @@ const connectMqttClient = (_adapter) => {
   setAcSwitch,
   setAutoRecover,
   setBuzzerSwitch,
+  setHubState,
   setChargeLimit,
   setDcSwitch,
   setDischargeLimit,
