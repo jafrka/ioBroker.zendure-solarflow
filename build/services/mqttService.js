@@ -841,7 +841,8 @@ const connectMqttClient = (_adapter) => {
     return;
   }
   const mqttPassword = atob((_b = adapter.paths) == null ? void 0 : _b.mqttPassword);
-  adapter.log.debug(adapter.accessToken);
+  adapter.log.info(adapter.accessToken);
+  adapter.log.info(mqttPassword);
   const options = {
     clientId: adapter.accessToken,
     username: "zenApp",
