@@ -97,6 +97,25 @@ const createControlStates = async (adapter, productKey, deviceKey, type) => {
         native: {}
       }
     ));
+        adapter == null ? void 0 : adapter.subscribeStates(`${productKey}.${deviceKey}.control.hubState`);
+        await (adapter == null ? void 0 : adapter.extendObject(
+      `${productKey}.${deviceKey}.control.hubState`,
+      {
+        type: "state",
+        common: {
+          name: {
+            de: "Ausschaltmodus einstellen",
+            en: "Turning Off Settings"
+          },
+          type: "boolean",
+          desc: "hubState",
+          role: "switch",
+          read: true,
+          write: true
+        },
+        native: {}
+      }
+    ));
     if (type == "aio" || type == "solarflow" || type == "hyper" || type == "ace") {
       await (adapter == null ? void 0 : adapter.extendObject(
         `${productKey}.${deviceKey}.control.setOutputLimit`,
