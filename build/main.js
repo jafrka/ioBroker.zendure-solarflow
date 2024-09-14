@@ -302,6 +302,14 @@ class ZendureSolarflow extends utils.Adapter {
                 deviceKey,
                 state.val ? true : false
               );
+            
+           } else if (stateName2 == "hubState") {
+              (0, import_mqttService.setHubState)(
+                this,
+                productKey,
+                deviceKey,
+                state.val ? true : false
+              );
             }
             break;
           default:
