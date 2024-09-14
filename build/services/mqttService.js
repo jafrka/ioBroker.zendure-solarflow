@@ -607,6 +607,7 @@ const onMessage = async (topic, message) => {
       );
     }
     if (((_Ja = obj.properties) == null ? void 0 : _Ja.hubState) != null && ((_Ka = obj.properties) == null ? void 0 : _Ka.hubState) != void 0) {
+            const value = ((_D = obj.properties) == null ? void 0 : _D.hubState) == 0 ? false : true;
       (0, import_adapterService.updateSolarFlowState)(
         adapter,
         productKey,
