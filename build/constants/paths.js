@@ -19,7 +19,9 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var paths_exports = {};
 __export(paths_exports, {
   pathsEu: () => pathsEu,
-  pathsGlobal: () => pathsGlobal
+  pathsGlobal: () => pathsGlobal,
+  pathsLocal: () => pathsLocal,
+
 });
 module.exports = __toCommonJS(paths_exports);
 const hostname = `app.zendure.tech`;
@@ -33,6 +35,14 @@ const pathsGlobal = {
   solarFlowTokenUrl: `https://${hostname}/${versionGlobal}/${solarFlowTokenPath}`,
   solarFlowQueryDeviceListUrl: `https://${hostname}/${versionGlobal}/${solarFlowDeviceListPath}`,
   mqttUrl: "mq.zen-iot.com",
+  mqttPort: 1883,
+  mqttPassword: "b0sjUENneTZPWnhk"
+};
+const pathsLocal = {
+  solarFlowDevRegisterUrl: `https://${hostname}/${versionGlobal}/${solarFlowDevRegisterPath}`,
+  solarFlowTokenUrl: `https://${hostname}/${versionGlobal}/${solarFlowTokenPath}`,
+  solarFlowQueryDeviceListUrl: `https://${hostname}/${versionGlobal}/${solarFlowDeviceListPath}`,
+  mqttUrl: "192.168.229.53",
   mqttPort: 1883,
   mqttPassword: "b0sjUENneTZPWnhk"
 };
